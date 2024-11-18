@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Members</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Group Members</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('main')">Home</a></li>
+                <li><a href="#" onclick="showSection('colin')">Colin Adam</a></li>
+                <li><a href="#" onclick="showSection('chris')">Chris Park</a></li>
+                <li><a href="#" onclick="showSection('ben')">Ben Semkoff</a></li>
+                <li><a href="#" onclick="showSection('nick')">Nick Wilcox</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Main page content -->
+        <section id="main" class="content-section">
+            <h2>Welcome</h2>
+            <p>Welcome to the group members' website. Click on a name above to learn more about each member.</p>
+        </section>
+
+        <!-- Colin Adam's section -->
+        <section id="colin" class="content-section hidden">
+            <h2>Colin Adam</h2>
+            <p>Colin Adam is responsible for project management. He ensures everything stays on track and communicates
+                effectively with all team members.</p>
+            <a href="#" onclick="showSection('main')">Back to Home</a>
+        </section>
+
+        <!-- Chris Park's section -->
+        <section id="chris" class="content-section hidden">
+            <h2>Chris Park</h2>
+            <p>Chris Park is responsible for development. He writes clean and efficient code to bring the project to
+                life.</p>
+            <a href="#" onclick="showSection('main')">Back to Home</a>
+        </section>
+
+        <!-- Ben Semkoff's section -->
+        <section id="ben" class="content-section hidden">
+            <h2>Ben Semkoff</h2>
+            <p>Ben Semkoff is responsible for design. He creates visually appealing layouts and ensures a great user
+                experience.</p>
+            <a href="#" onclick="showSection('main')">Back to Home</a>
+        </section>
+
+        <!-- Nick Wilcox's section -->
+        <section id="nick" class="content-section hidden">
+            <h2>Nick Wilcox</h2>
+            <p>Nick Wilcox is responsible for testing. He ensures that all features work as expected and finds bugs
+                before release.</p>
+            <a href="#" onclick="showSection('main')">Back to Home</a>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
