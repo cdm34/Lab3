@@ -8,4 +8,4 @@ function showSection(sectionId) {
     document.getElementById(sectionId).classList.remove('hidden');
 }
 // comment to see if i can push - ben
-// test comment
+// This is Chris
