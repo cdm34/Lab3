@@ -7,3 +7,4 @@ function showSection(sectionId) {
     // Show the selected section
     document.getElementById(sectionId).classList.remove('hidden');
 }
+// comment to see if i can push - ben
