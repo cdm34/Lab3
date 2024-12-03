@@ -13,8 +13,21 @@
         <h1>Chris Park</h1>
     </header>
     <main>
-        <p>Chris Park is responsible for development. He writes clean and efficient code to bring the project to life.
+        <img src="Chris-Photo.jpg" height="300" width="225" style="display: block; margin: 0 auto;">
+        <p style="text-align: center;">
+            Placeholder text
         </p>
+        <form id="contact-form">
+            <h2>Contact Chris</h2>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
+        <div id="confirmation" style="display:none;">Message sent!</div>
         <a href="index.html">Back to Main Page</a>
     </main>
 </body>

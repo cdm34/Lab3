@@ -13,8 +13,21 @@
         <h1>Colin Adam</h1>
     </header>
     <main>
-        <p>Colin Adam is responsible for project management. He ensures everything stays on track and communicates
-            effectively with all team members.</p>
+        <img src="colin.png" height="300" width="225" style="display: block; margin: 0 auto;">
+        <p style="text-align: center;">
+            Placeholder text
+        </p>
+        <form id="contact-form">
+            <h2>Contact Colin</h2>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
+        <div id="confirmation" style="display:none;">Message sent!</div>
         <a href="index.html">Back to Main Page</a>
     </main>
 </body>
