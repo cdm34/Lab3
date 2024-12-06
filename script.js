@@ -1,42 +1,61 @@
-const correctPassword = "test"; // Default password
+// Store a hashed version of the password (MD5 hash of 'Fall2024Lab3')
+const hashedPassword = '6293099fbe7fed2ebee14aa4535003e0';
 
-// Event listener for accessing protected content
-const protectedLink = document.getElementById('access-protected-content');
-if (protectedLink) {
-    protectedLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        console.log("Access Protected Content clicked");
+let authenticated = false;
 
-        const userInput = prompt("Enter the password:");
-        console.log("User input:", userInput);
-
-        if (userInput === correctPassword) {
-            console.log("Authentication successful");
-            window.location.href = "protected-content.html"; // Redirect after successful login
-        } else {
-            console.log("Authentication failed");
-            alert("Incorrect password.");
-        }
-    });
+// Function to hash the password using MD5 (requires md5.js library)
+function hashPassword(password) {
+    return md5(password); // Assuming md5.js is included
 }
 
-// Handle protected content access
-if (document.title === "Protected Content") {
-    const userInput = prompt("Enter the password:");
-    console.log("User input on protected content:", userInput);
+// Function to authenticate the user
+function authenticate(callback) {
+    if (authenticated) {
+        callback();
+        return;
+    }
 
-    if (userInput !== correctPassword) {
-        console.log("Authentication failed on protected page");
-        alert("Incorrect password. Redirecting to home page.");
-        window.location.href = "index.html"; // Redirect back to the home page
+    const userPassword = prompt('Enter the password to access protected content:');
+    if (!userPassword) {
+        alert('Password cannot be empty.');
+        return;
+    }
+
+    if (hashPassword(userPassword) === hashedPassword) {
+        authenticated = true;
+        alert('Access granted!');
+        callback();
     } else {
-        console.log("Authentication successful on protected page");
+        alert('Incorrect password. Please try again.');
     }
 }
 
+// Function to navigate to a protected content section
+function navigateToProtectedSection(sectionId) {
+    const allSections = document.querySelectorAll('.content-section');
+
+    // Hide all sections
+    allSections.forEach(section => (section.style.display = 'none'));
+
+    // Show the protected content section
+    const protectedSection = document.getElementById(sectionId);
+    if (protectedSection) {
+        protectedSection.style.display = 'block';
+    } else {
+        console.error(`Section with ID "${sectionId}" not found.`);
+    }
+}
+
+// Event listener for accessing protected content
+document.querySelector('nav a[href="#protected-content"]').addEventListener('click', function (event) {
+    event.preventDefault();
+    authenticate(() => {
+        navigateToProtectedSection('protected-content'); // Adjust section ID as needed
+    });
+});
+
 // Handle sections dynamically
 function showSection(sectionId) {
-    // Ensure the page has the sections before attempting to manipulate them
     const sections = document.querySelectorAll('.content-section');
     if (!sections.length) {
         console.error('No sections found on this page.');
@@ -57,8 +76,10 @@ function showSection(sectionId) {
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`Failed to load ${sectionId}.html`);
+                    } else {
+                        console.log('Successfully loaded');
+                        return response.text();
                     }
-                    return response.text();
                 })
                 .then(html => {
                     selectedSection.innerHTML = html;
@@ -69,15 +90,24 @@ function showSection(sectionId) {
             selectedSection.style.display = 'block';
         }
     } else {
-        console.error('Section with ID', sectionId, 'not found.');
+        console.error(`Section with ID "${sectionId}" not found.`);
     }
 }
 
 // Set default section to display on page load
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('main')) {
+    const defaultSection = document.getElementById('main');
+    if (defaultSection) {
         showSection('main'); // Default to main section
     } else {
         console.log('No main section to display on this page.');
     }
 });
+
+// Handle direct access to the protected page
+if (document.title === "Protected Content") {
+    authenticate(() => {
+        console.log("User authenticated on the protected page");
+        navigateToProtectedSection('protected-content');
+    });
+}
