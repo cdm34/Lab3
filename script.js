@@ -1,4 +1,3 @@
-// Store a hashed version of the password (MD5 hash of 'Fall2024Lab3')
 const hashedPassword = '6293099fbe7fed2ebee14aa4535003e0';
 
 let authenticated = false;
